@@ -18,7 +18,10 @@ const Navbar = () => {
         <ul>
           {links.map((link) => {
             return (
-              <li key={link.label} className="float-left px-1 hover:font-bold">
+              <li
+                key={link.label}
+                className="float-left px-1 hover:font-bold transition-all duration-100"
+              >
                 <Link href={link.to}> {link.label} </Link>
               </li>
             );
