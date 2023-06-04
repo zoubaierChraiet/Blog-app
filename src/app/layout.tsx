@@ -19,7 +19,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} flex flex-col`}>
         <Navbar />
-        <div className="flex-grow px-24">{children}</div>
+        <div className="flex-grow px-24 overflow-y-auto">{children}</div>
         <Footer />
       </body>
     </html>
