@@ -5,7 +5,7 @@ const About = () => {
   return (
     <div>
       <div className="relative">
-        <div className="absolute bottom-0 left-0 ml-4 mb-4 p-4 bg-gradient-to-r from-green-300 to-green-100 opacity-80">
+        <div className="absolute bottom-0 left-0 mb-2 ml-2 p-2 md:ml-4 md:mb-4 md:p-4 bg-gradient-to-r from-green-300 to-green-100 opacity-80">
           <h2 className="text-white font-bold text-lg">
             Digital story tellers
           </h2>
@@ -21,7 +21,7 @@ const About = () => {
       </div>
       <div className="grid grid-cols-2 gap-8 mt-4">
         <div>
-          <h1 className="text-lg font-bold">Who Are We?</h1>
+          <h1 className="md:text-lg text-base font-bold">Who Are We?</h1>
           <p className="text-justify">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus
             quae dolor, optio voluptatibus magnam iure esse tempora beatae. A
@@ -38,7 +38,7 @@ const About = () => {
           </p>
         </div>
         <div>
-          <h1 className="text-lg font-bold">What We Do?</h1>
+          <h1 className="md:text-lg text-base font-bold">What We Do?</h1>
           <p className="text-justify">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus
             quae dolor, optio voluptatibus magnam iure esse tempora beatae, a

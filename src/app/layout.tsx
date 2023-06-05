@@ -16,10 +16,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <body className={`${inter.className} flex flex-col`}>
         <Navbar />
-        <div className="flex-grow px-24 overflow-y-auto">{children}</div>
+        <div className="flex-grow px-4 md:px-24 overflow-y-auto">
+          {children}
+        </div>
         <Footer />
       </body>
     </html>

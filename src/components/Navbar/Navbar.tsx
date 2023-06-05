@@ -15,7 +15,7 @@ const Navbar = () => {
     <div className="h-[100px] px-24">
       <div className="flex justify-between items-center h-full">
         <h2>ZOU-BLOG</h2>
-        <ul>
+        <ul className="hidden md:block">
           {links.map((link) => {
             return (
               <li
