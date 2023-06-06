@@ -1,9 +1,6 @@
-import Navbar from "@/components/Navbar/Navbar";
 import "./globals.css";
-import { Inter } from "next/font/google";
-import Footer from "@/components/Footer/Footer";
-
-const inter = Inter({ subsets: ["latin"] });
+import { ThemeProvider } from "@/context/ThemeContext";
+import Main from "@/components/main/Main";
 
 export const metadata = {
   title: "Blog-App",
@@ -16,14 +13,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark">
-      <body className={`${inter.className} flex flex-col`}>
-        <Navbar />
-        <div className="flex-grow px-4 md:px-24 overflow-y-auto">
-          {children}
-        </div>
-        <Footer />
-      </body>
+    <html lang="en">
+      <ThemeProvider>
+        <Main>{children}</Main>
+      </ThemeProvider>
     </html>
   );
 }

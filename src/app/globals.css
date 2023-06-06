@@ -24,6 +24,11 @@
   border: 1px solid grey;
 }
 
+h2,
+p {
+  @apply dark:text-white;
+}
+
 html,
 body,
 :root {
