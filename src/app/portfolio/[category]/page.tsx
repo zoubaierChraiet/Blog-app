@@ -1,4 +1,4 @@
-import { NextPage } from "next/types";
+import { notFound } from "next/navigation";
 import { items } from "./data";
 import Image from "next/image";
 
@@ -6,6 +6,9 @@ const Category: React.FC<{ params: { [param: string]: string } }> = ({
   params,
 }) => {
   const data = items[params.category];
+
+  if (!data) return notFound();
+
   return (
     <div>
       <h2 className="text-3xl font-bold mb-4">{params.category}</h2>

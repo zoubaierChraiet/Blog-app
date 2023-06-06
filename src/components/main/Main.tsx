@@ -5,6 +5,7 @@ import { Inter } from "next/font/google";
 import React, { useContext } from "react";
 import Footer from "../Footer/Footer";
 import Navbar from "../Navbar/Navbar";
+import { AuthProvider } from "../AuthProvider/AuthProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,11 +17,13 @@ const Main: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         theme === "dark" ? "dark" : ""
       }`}
     >
-      <Navbar />
-      <div className="flex-grow px-4 md:px-24 overflow-y-auto dark:bg-black">
-        {children}
-      </div>
-      <Footer />
+      <AuthProvider>
+        <Navbar />
+        <div className="flex-grow px-4 md:px-24 overflow-y-auto dark:bg-black transition-all duration-1000 ease">
+          {children}
+        </div>
+        <Footer />
+      </AuthProvider>
     </body>
   );
 };

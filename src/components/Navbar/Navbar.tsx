@@ -1,6 +1,7 @@
 "use client";
 
 import { ThemeContext } from "@/context/ThemeContext";
+import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useContext } from "react";
 
@@ -11,13 +12,15 @@ const links = [
   { label: "About", to: "/about" },
   { label: "Contact", to: "/contact" },
   { label: "Dashboard", to: "/dashboard" },
-  { label: "Logout", to: "/logout" },
 ];
 
 const Navbar = () => {
   const { theme, toggle } = useContext(ThemeContext);
+  const session = useSession();
+  const isAuthenticated = session.status === "authenticated";
+
   return (
-    <div className="h-[100px] px-24 dark:bg-black">
+    <div className="h-[100px] px-24 dark:bg-black transition-all duration-1000 ease">
       <div className="flex justify-between items-center h-full">
         <h2 className="dark:text-white">ZOU-BLOG</h2>
         <ul className="hidden md:block">
@@ -41,6 +44,13 @@ const Navbar = () => {
               </li>
             );
           })}
+          <li className="float-left px-1 hover:font-bold transition-all duration-100 dark:text-white">
+            {isAuthenticated ? (
+              <button onClick={() => signOut()}>Logout</button>
+            ) : (
+              <Link href="/dashboard/login"> Login </Link>
+            )}
+          </li>
         </ul>
       </div>
     </div>
