@@ -24,24 +24,22 @@ const Dashboard = () => {
   const router = useRouter();
   const user = session.data?.user;
 
-  const { data, error, mutate } = useSWR(
+  console.log(session.status);
+
+  if (session.status === "unauthenticated") {
+    router.push("/dashboard/login");
+  }
+
+  const { data, mutate } = useSWR(
     `/api/posts?userName=${user?.name || ""}`,
     fetcher
   );
 
-  switch (session.status) {
-    case "loading": {
-      return <div>loading...</div>;
-    }
-    case "unauthenticated": {
-      router.push("/dashboard/login");
-    }
-    case "authenticated": {
-      return <DashboardContent data={data || []} mutate={mutate} />;
-    }
-    default:
-      return <div>loading...</div>;
+  if (session.status === "unauthenticated") {
+    return <div>loading...</div>;
   }
+
+  return <DashboardContent data={data || []} mutate={mutate} />;
 };
 
 interface IProps {
@@ -66,8 +64,11 @@ const DashboardContent: React.FC<IProps> = ({ data, mutate }) => {
       <div>
         {Boolean(!data?.length) ? <div>No Posts yet</div> : null}
         {data.map((post) => (
-          <div key={post?._id} className="flex items-center justify-between">
-            <div className="flex gap-4 items-center mt-4">
+          <div
+            key={post?._id}
+            className="flex flex-col md:flex-row md:items-center md:justify-between"
+          >
+            <div className="flex flex-col md:flex-row md:gap-4 md:items-center mt-4">
               <Image
                 src={IllustrationImage}
                 className="h-[150px] md:w-[150px] object-cover rounded-sm w-full"

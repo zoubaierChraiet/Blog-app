@@ -20,7 +20,7 @@ const Navbar = () => {
   const isAuthenticated = session.status === "authenticated";
 
   return (
-    <div className="h-[100px] px-24 dark:bg-black transition-all duration-1000 ease">
+    <div className="min-h-[100px] px-24 dark:bg-black transition-all duration-1000 ease">
       <div className="flex justify-between items-center h-full">
         <h2 className="dark:text-white">ZOU-BLOG</h2>
         <ul className="hidden md:block">
