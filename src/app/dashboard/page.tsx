@@ -17,7 +17,7 @@ interface IPost {
   userName?: string;
 }
 
-const fetcher = (...args: any) => fetch(...args).then((res) => res.json());
+const fetcher = (...args: any) => fetch(args[0]).then((res) => res.json());
 
 const Dashboard = () => {
   const session = useSession();
@@ -30,7 +30,7 @@ const Dashboard = () => {
     router.push("/dashboard/login");
   }
 
-  const { data, mutate } = useSWR(
+  const { data, mutate, isLoading } = useSWR(
     `/api/posts?userName=${user?.name || ""}`,
     fetcher
   );
@@ -39,15 +39,18 @@ const Dashboard = () => {
     return <div>loading...</div>;
   }
 
-  return <DashboardContent data={data || []} mutate={mutate} />;
+  return (
+    <DashboardContent data={data || []} mutate={mutate} isLoading={isLoading} />
+  );
 };
 
 interface IProps {
   data: IPost[];
   mutate: () => void;
+  isLoading: boolean;
 }
 
-const DashboardContent: React.FC<IProps> = ({ data, mutate }) => {
+const DashboardContent: React.FC<IProps> = ({ data, mutate, isLoading }) => {
   const handleDelete = async (id: string) => {
     try {
       await fetch(`http://localhost:3000/api/posts/${id}`, {
@@ -62,7 +65,8 @@ const DashboardContent: React.FC<IProps> = ({ data, mutate }) => {
   return (
     <div className="flex flex-col-reverse md:grid md:grid-cols-2 md:gap-4 ">
       <div>
-        {Boolean(!data?.length) ? <div>No Posts yet</div> : null}
+        {isLoading ? <div> Loading... </div> : null}
+        {Boolean(!data?.length) && !isLoading ? <div>No Posts yet</div> : null}
         {data.map((post) => (
           <div
             key={post?._id}
@@ -75,7 +79,9 @@ const DashboardContent: React.FC<IProps> = ({ data, mutate }) => {
                 alt=""
               />
               <div className="flex flex-col justify-between">
-                <h2 className="text-4xl font-bold">{post.title}</h2>
+                <h2 className="text-2xl md:text-4xl font-bold text-ellipsis">
+                  {post.title}
+                </h2>
                 <p className="text-justify">{post.description}</p>
               </div>
             </div>

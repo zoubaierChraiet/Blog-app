@@ -35,9 +35,9 @@ const BlogPost = async ({
   const data = await getData(params.id);
   return (
     <div>
-      <div className="grid grid-cols-2 gap-4">
+      <div className="flex flex-col-reverse md:grid md:grid-cols-2 gap-4">
         <div className="flex flex-col justify-between">
-          <h2 className="text-4xl font-bold">{data.title}</h2>
+          <h2 className="text-2xl md:text-4xl font-bold">{data.title}</h2>
           <p className="text-justify">{data.description}</p>
           <div>avatar</div>
         </div>

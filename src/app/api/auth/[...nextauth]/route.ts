@@ -31,11 +31,9 @@ export const authOptions = {
       credentials: {},
     }),
   ],
+  pages: { error: "/dashboard", signIn: "/dashboard" },
 };
 
-const handler = NextAuth({
-  ...authOptions,
-  pages: { error: "/dashboard", signIn: "/dashboard" },
-});
+const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };
