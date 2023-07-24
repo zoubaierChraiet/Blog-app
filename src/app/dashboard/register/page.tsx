@@ -29,17 +29,20 @@ const Register = () => {
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     try {
-      const res = await fetch("http://localhost:3000/api/auth/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: formState.name,
-          email: formState.email,
-          password: formState.password,
-        }),
-      });
+      const res = await fetch(
+        "https://zouba-blog-6n7x6x4c0-zoubachraiet-yahoocom.vercel.app/api/auth/register",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: formState.name,
+            email: formState.email,
+            password: formState.password,
+          }),
+        }
+      );
       res.status === 201 &&
         router.push("/dashboard/login?success=Account has been created");
     } catch (err) {}

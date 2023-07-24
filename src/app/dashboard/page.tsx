@@ -53,9 +53,12 @@ interface IProps {
 const DashboardContent: React.FC<IProps> = ({ data, mutate, isLoading }) => {
   const handleDelete = async (id: string) => {
     try {
-      await fetch(`http://localhost:3000/api/posts/${id}`, {
-        method: "Delete",
-      });
+      await fetch(
+        `https://zouba-blog-6n7x6x4c0-zoubachraiet-yahoocom.vercel.app/api/posts/${id}`,
+        {
+          method: "Delete",
+        }
+      );
       mutate();
     } catch (err: any) {
       throw new Error(err);
@@ -122,19 +125,22 @@ const DashboardForm: React.FC<{ mutate: () => void }> = ({ mutate }) => {
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     try {
-      await fetch("http://localhost:3000/api/posts", {
-        method: "Post",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          content: formState.content,
-          description: formState.description,
-          image: formState.image,
-          title: formState.title,
-          userName: session.data?.user?.name,
-        }),
-      });
+      await fetch(
+        "https://zouba-blog-6n7x6x4c0-zoubachraiet-yahoocom.vercel.app/api/posts",
+        {
+          method: "Post",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            content: formState.content,
+            description: formState.description,
+            image: formState.image,
+            title: formState.title,
+            userName: session.data?.user?.name,
+          }),
+        }
+      );
       setFormState({
         content: "",
         description: "",

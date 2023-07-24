@@ -3,9 +3,12 @@ import Link from "next/link";
 import AppsImage from "public/images/apps.jpg";
 
 const getData = async () => {
-  const res = await fetch("http://localhost:3000/api/posts", {
-    cache: "no-cache",
-  });
+  const res = await fetch(
+    "https://zouba-blog-6n7x6x4c0-zoubachraiet-yahoocom.vercel.app/api/posts",
+    {
+      cache: "no-cache",
+    }
+  );
 
   if (!res.ok) {
     throw new Error("server error");
