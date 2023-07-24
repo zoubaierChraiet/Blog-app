@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 interface IFormState {
   email: string;
@@ -61,20 +62,23 @@ const Login = () => {
             onChange={handleChange}
             name="password"
           />
-          <button
-            type="submit"
-            onClick={handleSubmit}
-            className="mt-4 bg-gradient-to-tr from-green-400  to-green-200 rounded-sm py-2 px-4 text-white w-fit"
-          >
-            Sign in
-          </button>
+          <div className="flex gap-4">
+            <button
+              type="submit"
+              onClick={handleSubmit}
+              className="mt-4 bg-gradient-to-tr from-green-400  to-green-200 rounded-sm py-2 px-4 text-white w-fit"
+            >
+              Sign in
+            </button>
+            <button
+              className="bg-gradient-to-tr from-green-400  to-green-200 text-white mt-4 p-2 rounded-sm"
+              onClick={() => signIn("google")}
+            >
+              signin with google
+            </button>
+          </div>
         </form>
-        <button
-          className="bg-gradient-to-tr from-green-400  to-green-200 text-white mt-4 p-2 rounded-sm"
-          onClick={() => signIn("google")}
-        >
-          signin with google
-        </button>
+        <Link href="/dashboard/register">You don`t have an account?</Link>
       </div>
     </div>
   );

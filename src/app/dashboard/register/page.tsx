@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 interface IFormState {
   name: string;
@@ -28,7 +29,6 @@ const Register = () => {
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     try {
-      console.log(formState);
       const res = await fetch("http://localhost:3000/api/auth/register", {
         method: "POST",
         headers: {
@@ -80,6 +80,7 @@ const Register = () => {
           Register
         </button>
       </form>
+      <Link href="/dashboard/login">Already have an account?</Link>
     </div>
   );
 };
